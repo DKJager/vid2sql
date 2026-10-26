@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700" role="img" aria-labelledby="title desc" font-family="sans-serif">
+  <title id="title">Video-to-SQL architecture (opencv3)</title>
+  <desc id="desc">Left to right: a video clip, either a local file or an object under the S3 uploads/ prefix, triggers an S3 event. The event invokes a Lambda container image (arm64, OpenCV 5). Inside it, (1) sample_segments finds histogram scene cuts and Farneback optical-flow motion. (2) The agent loop in v2s/agent.py and v2s/policy.py estimates camera motion with phase correlation, plans, runs track_detections (MOG2 and a centroid tracker, with optional stabilisation), observes, decides, and then accepts, retries or flags the result for a human. (3) Rows are written to SQLite with 8 tables, including agent_trace and review_queue. The database is stored in the S3 results bucket as db/v2s.db. A second Lambda behind an HTTP API serves a read-only SQL box, nine plain-question patterns and source-at-t links to a judge or BI user in a browser. Items in review_queue go to a human reviewer, who uses scripts/review.py to approve or reject them on a local copy. A dashed box marks optional remote vision and reasoning services (V2S_VISION_ENDPOINT / V2S_ENDPOINT), which are off in this submission. Legend: solid means deployed in AWS (us-east-1), dashed means optional, and grey fill means outside AWS.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333333"/>
+    </marker>
+    <style>
+      .box { fill: #ffffff; stroke: #2b4a6f; stroke-width: 2; }
+      .local { fill: #eeeeee; stroke: #2b4a6f; stroke-width: 2; }
+      .inner { fill: #f3f7fb; stroke: #5b7a9c; stroke-width: 1.5; }
+      .chip { fill: #ffffff; stroke: #5b7a9c; stroke-width: 1.2; }
+      .opt { fill: #ffffff; stroke: #777777; stroke-width: 2; stroke-dasharray: 8 5; }
+      .flow { stroke: #333333; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+      .optflow { stroke: #777777; stroke-width: 2; fill: none; stroke-dasharray: 8 5; marker-end: url(#arrow); }
+      .h { font-size: 14px; font-weight: bold; fill: #1a1a1a; }
+      .t { font-size: 12px; fill: #1a1a1a; }
+      .s { font-size: 11px; fill: #333333; }
+      .mono { font-family: monospace; font-size: 12px; fill: #1a1a1a; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="700" fill="#fafbfc"/>
+  <text x="600" y="40" text-anchor="middle" font-size="20" font-weight="bold" fill="#1a1a1a">Video-to-SQL: OpenCV 5 detection and tracking to SQL tables on AWS</text>
+
+  <!-- 1. Video clip -->
+  <rect class="box" x="20" y="255" width="140" height="100" rx="8"/>
+  <text class="h" x="90" y="285" text-anchor="middle">Video clip</text>
+  <text class="t" x="90" y="308" text-anchor="middle">local file or</text>
+  <text class="t" x="90" y="326" text-anchor="middle">S3 uploads/ prefix</text>
+  <path class="flow" d="M160,305 L183,305"/>
+
+  <!-- 2. S3 event -->
+  <rect class="box" x="185" y="270" width="100" height="70" rx="8"/>
+  <text class="h" x="235" y="310" text-anchor="middle">S3 event</text>
+  <path class="flow" d="M285,305 L308,305"/>
+
+  <!-- 3. Lambda container -->
+  <rect class="box" x="310" y="85" width="400" height="475" rx="10"/>
+  <text class="h" x="510" y="110" text-anchor="middle">Lambda container image (arm64, OpenCV 5)</text>
+
+  <!-- (1) sample_segments -->
+  <rect class="inner" x="322" y="122" width="376" height="62" rx="6"/>
+  <text class="t" x="332" y="144" font-weight="bold">(1) sample_segments</text>
+  <text class="t" x="332" y="166">histogram scene cuts + Farneback optical-flow motion</text>
+  <path class="flow" d="M510,184 L510,198"/>
+
+  <!-- (2) agent loop -->
+  <rect class="inner" x="322" y="200" width="376" height="248" rx="6"/>
+  <text class="t" x="332" y="220" font-weight="bold">(2) agent loop: v2s/agent.py + v2s/policy.py</text>
+
+  <rect class="chip" x="332" y="232" width="240" height="40" rx="5"/>
+  <text class="t" x="452" y="249" text-anchor="middle">camera-motion estimate</text>
+  <text class="t" x="452" y="265" text-anchor="middle">(phase correlation)</text>
+  <path class="flow" d="M572,252 L593,252"/>
+  <rect class="chip" x="595" y="237" width="90" height="30" rx="5"/>
+  <text class="t" x="640" y="257" text-anchor="middle">plan</text>
+  <path class="flow" d="M640,267 L640,286"/>
+
+  <rect class="chip" x="332" y="288" width="353" height="40" rx="5"/>
+  <text class="t" x="508" y="305" text-anchor="middle">track_detections (MOG2 + centroid tracker,</text>
+  <text class="t" x="508" y="321" text-anchor="middle">optional stabilisation)</text>
+  <path class="flow" d="M400,328 L400,346"/>
+
+  <rect class="chip" x="332" y="348" width="130" height="30" rx="5"/>
+  <text class="t" x="397" y="368" text-anchor="middle">observe</text>
+  <path class="flow" d="M462,363 L488,363"/>
+  <rect class="chip" x="490" y="348" width="130" height="30" rx="5"/>
+  <text class="t" x="555" y="368" text-anchor="middle">decide</text>
+  <path class="flow" d="M555,378 L555,396"/>
+
+  <rect class="chip" x="332" y="398" width="353" height="34" rx="5"/>
+  <text class="t" x="508" y="420" text-anchor="middle">accept / retry / flag for human</text>
+  <path class="flow" d="M685,415 C700,415 700,252 687,252"/>
+  <text class="s" x="666" y="338" text-anchor="middle">retry</text>
+  <path class="flow" d="M450,432 L450,458"/>
+
+  <!-- (3) SQLite -->
+  <rect class="inner" x="322" y="460" width="376" height="88" rx="6"/>
+  <text class="t" x="332" y="480" font-weight="bold">(3) rows written to SQLite</text>
+  <text class="t" x="332" y="500">8 tables incl. agent_trace and review_queue</text>
+  <rect class="chip" x="332" y="510" width="110" height="28" rx="5"/>
+  <text class="mono" x="387" y="529" text-anchor="middle">agent_trace</text>
+  <rect class="chip" x="565" y="510" width="120" height="28" rx="5"/>
+  <text class="mono" x="625" y="529" text-anchor="middle">review_queue</text>
+
+  <path class="flow" d="M710,305 L733,305"/>
+
+  <!-- 4. S3 results bucket -->
+  <rect class="box" x="735" y="255" width="130" height="100" rx="8"/>
+  <text class="h" x="800" y="285" text-anchor="middle">S3 results</text>
+  <text class="h" x="800" y="303" text-anchor="middle">bucket</text>
+  <text class="mono" x="800" y="330" text-anchor="middle">db/v2s.db</text>
+  <path class="flow" d="M865,305 L888,305"/>
+
+  <!-- 5. Lambda + HTTP API -->
+  <rect class="box" x="890" y="220" width="155" height="170" rx="8"/>
+  <text class="h" x="967" y="248" text-anchor="middle">Lambda +</text>
+  <text class="h" x="967" y="266" text-anchor="middle">HTTP API</text>
+  <text class="t" x="967" y="294" text-anchor="middle">read-only SQL box</text>
+  <text class="t" x="967" y="318" text-anchor="middle">nine plain-question</text>
+  <text class="t" x="967" y="334" text-anchor="middle">patterns</text>
+  <text class="t" x="967" y="358" text-anchor="middle">source-at-t links</text>
+  <path class="flow" d="M1045,305 L1063,305"/>
+
+  <!-- 6. Judge / BI user -->
+  <rect class="local" x="1065" y="260" width="120" height="90" rx="8"/>
+  <text class="h" x="1125" y="295" text-anchor="middle">Judge / BI user</text>
+  <text class="t" x="1125" y="318" text-anchor="middle">in a browser</text>
+
+  <!-- Optional remote services -->
+  <rect class="opt" x="735" y="85" width="450" height="80" rx="8"/>
+  <text class="t" x="750" y="108" font-weight="bold">Optional (off in this submission):</text>
+  <text class="t" x="750" y="128">remote vision / reasoning services via</text>
+  <text class="mono" x="750" y="150">V2S_VISION_ENDPOINT / V2S_ENDPOINT</text>
+  <path class="optflow" d="M710,125 L733,125"/>
+
+  <!-- Human control -->
+  <path class="flow" d="M625,538 L625,598"/>
+  <rect class="local" x="440" y="600" width="350" height="64" rx="8"/>
+  <text class="h" x="615" y="625" text-anchor="middle">Human reviewer</text>
+  <text class="t" x="615" y="647" text-anchor="middle">scripts/review.py approve/reject on a local copy</text>
+
+  <!-- Legend -->
+  <rect x="850" y="585" width="335" height="95" rx="6" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+  <text class="t" x="862" y="604" font-weight="bold">Legend</text>
+  <line x1="862" y1="622" x2="902" y2="622" stroke="#2b4a6f" stroke-width="2"/>
+  <text class="t" x="912" y="626">solid = deployed in AWS (us-east-1)</text>
+  <line x1="862" y1="644" x2="902" y2="644" stroke="#777777" stroke-width="2" stroke-dasharray="8 5"/>
+  <text class="t" x="912" y="648">dashed = optional</text>
+  <rect x="862" y="658" width="40" height="14" fill="#eeeeee" stroke="#2b4a6f" stroke-width="1.5"/>
+  <text class="t" x="912" y="670">grey fill = outside AWS (local / browser)</text>
+</svg>

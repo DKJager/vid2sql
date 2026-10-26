@@ -1,0 +1,151 @@
+# vid2sql — AWS SAM template (hackathon entry). PREPARED, NOT DEPLOYED.
+#
+# Flow: a video uploaded to UploadBucket/uploads/ triggers PipelineFunction
+# (container image: OpenCV 5 pipeline) which keeps one SQLite database in
+# ResultsBucket at db/v2s.db; QueryFunction (same image) serves the read-only
+# SQL / plain-question web endpoint over that database via an HTTP API.
+#
+# No secrets are used. The pipeline runs fully locally inside the function.
+
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: vid2sql - S3 upload bucket, OpenCV 5 pipeline function, web query endpoint.
+
+Parameters:
+  StageName:
+    Type: String
+    Default: dev
+    AllowedPattern: '[a-z0-9-]{2,16}'
+
+Globals:
+  Function:
+    Architectures:
+      - arm64
+    MemorySize: 3008
+    Environment:
+      Variables:
+        RESULTS_BUCKET: !Ref ResultsBucket
+
+Resources:
+  UploadBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      # Deterministic name. PipelineFunction's S3ReadPolicy below repeats this
+      # string instead of !Ref UploadBucket: a !Ref there creates a circular
+      # dependency (bucket notification -> function -> role -> bucket) that
+      # CloudFormation rejects at deploy time. Stack name must be lowercase.
+      BucketName: !Sub "${AWS::StackName}-uploads-${AWS::AccountId}"
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      LifecycleConfiguration:
+        Rules:
+          - Id: expire-uploads
+            Status: Enabled
+            Prefix: uploads/
+            ExpirationInDays: 14
+
+  ResultsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      VersioningConfiguration:
+        Status: Enabled
+
+  PipelineFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      ImageConfig:
+        Command: ["deploy.lambda_pipeline.handler"]
+      Timeout: 900
+      EphemeralStorage:
+        Size: 4096
+      # One run at a time: the function read-modify-writes db/v2s.db.
+      # If the account's unreserved concurrency is at the default minimum,
+      # CloudFormation rejects this setting; delete the next line and redeploy.
+      ReservedConcurrentExecutions: 1
+      Policies:
+        - S3ReadPolicy:
+            # Must match UploadBucket.BucketName above; do not use !Ref here.
+            BucketName: !Sub "${AWS::StackName}-uploads-${AWS::AccountId}"
+        - S3CrudPolicy:
+            BucketName: !Ref ResultsBucket
+      Events:
+        Upload:
+          Type: S3
+          Properties:
+            Bucket: !Ref UploadBucket
+            Events: s3:ObjectCreated:*
+            Filter:
+              S3Key:
+                Rules:
+                  - Name: prefix
+                    Value: uploads/
+    Metadata:
+      Dockerfile: deploy/Dockerfile
+      DockerContext: ../
+      DockerTag: v1
+
+  QueryFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      ImageConfig:
+        Command: ["deploy.lambda_query.handler"]
+      Timeout: 30
+      EphemeralStorage:
+        Size: 1024
+      Policies:
+        - S3ReadPolicy:
+            BucketName: !Ref ResultsBucket
+      Events:
+        Api:
+          Type: HttpApi
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+            ApiId: !Ref QueryApi
+        Root:
+          Type: HttpApi
+          Properties:
+            Path: /
+            Method: ANY
+            ApiId: !Ref QueryApi
+    Metadata:
+      Dockerfile: deploy/Dockerfile
+      DockerContext: ../
+      DockerTag: v1
+
+  QueryApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: !Ref StageName
+      DefaultRouteSettings:
+        ThrottlingBurstLimit: 20
+        ThrottlingRateLimit: 10
+
+Outputs:
+  WebEndpoint:
+    Description: Base URL of the query endpoint (open it in a browser).
+    Value: !Sub "https://${QueryApi}.execute-api.${AWS::Region}.amazonaws.com/${StageName}/"
+  UploadBucketName:
+    Description: Upload videos under uploads/ in this bucket.
+    Value: !Ref UploadBucket
+  ResultsBucketName:
+    Description: Holds db/v2s.db, the SQLite database the endpoint queries.
+    Value: !Ref ResultsBucket

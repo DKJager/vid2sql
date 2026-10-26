@@ -1,0 +1,49 @@
+# Deploying vid2sql on AWS (owner steps)
+
+Nothing in this folder has been deployed. The template, the two Lambda entry
+points and the image recipe are prepared and the entry points are covered by
+offline tests (`tests/test_lambda_handlers.py`, an in-memory S3 stand-in).
+The CloudFormation template itself has not been validated by AWS yet; step 2
+does that.
+
+## What gets created
+
+| Resource | Purpose |
+|---|---|
+| `UploadBucket` (S3, private, encrypted) | videos go under `uploads/`; objects expire after 14 days |
+| `PipelineFunction` (Lambda, container image, arm64) | on each upload, runs the OpenCV 5 pipeline and merges rows into `db/v2s.db` |
+| `ResultsBucket` (S3, private, versioned) | holds the SQLite database |
+| `QueryFunction` + `QueryApi` (Lambda + HTTP API) | the web endpoint: SQL box, plain questions, timestamp links |
+
+The function image is built from `deploy/Dockerfile` with the dependencies
+pinned in `deploy/requirements-lambda.txt`. No secrets or API keys are used.
+
+## Steps
+
+1. Install the AWS SAM CLI and Docker on a machine signed in to the target
+   AWS account (region of your choice).
+2. From the repository root, validate: `sam validate --template deploy/template.yaml --lint`
+3. Build the images: `sam build --template deploy/template.yaml`
+4. Deploy: `sam deploy --guided --stack-name vid2sql` (accept the defaults;
+   allow SAM to create the image repository when asked).
+5. Copy the `WebEndpoint`, `UploadBucketName` and `ResultsBucketName` values
+   from the stack outputs.
+6. Upload a clip (set its licence in the object metadata so it is recorded):
+   `aws s3 cp data/clips/clip3_cobbled.webm s3://<UploadBucketName>/uploads/ --metadata license="CC BY 3.0",source-url="https://commons.wikimedia.org/wiki/File:Traffic_on_a_cobbled_street_-_soundscape.webm"`
+7. Wait about two minutes, then open `WebEndpoint` and ask "How many moving
+   objects are in each video?". Until the first upload finishes the endpoint
+   answers 503 "no database yet".
+8. For the submission, record a screen capture of steps 6-7 as proof the AWS
+   component works, and put the `WebEndpoint` URL in the submission form.
+
+## Known risks to check on first deploy
+
+- Image size and cold start: the OpenCV image may need more than the default
+  build time; the pipeline function allows 15 minutes and 4 GB of scratch
+  disk, enough for a one-minute 1080p clip (about 1 minute of processing in
+  local runs on a shared server; Lambda speed is untested).
+- The first `sam deploy` needs permission to create IAM roles, S3 buckets,
+  an ECR repository, Lambda functions and an HTTP API.
+- The HTTP API is public and throttled (10 requests/second). Queries are
+  read-only, but add an authorizer before leaving it up long-term.
+- To avoid cost, delete the stack when judging is over: `sam delete`.

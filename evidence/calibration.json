@@ -1,0 +1,1638 @@
+{
+  "best_threshold": 6.0,
+  "by_jitter": {
+    "facade/0": {
+      "mean_camera_motion_px": 0.5593,
+      "mean_error_off": 0.0,
+      "mean_error_on": 0.0,
+      "mean_objects_off": 3.0,
+      "mean_objects_on": 3.0,
+      "n": 3,
+      "n_valid": 3,
+      "on_run_stabilised_fraction": 0.0
+    },
+    "facade/1": {
+      "mean_camera_motion_px": 1.5827,
+      "mean_error_off": 0.0,
+      "mean_error_on": 0.0,
+      "mean_objects_off": 3.0,
+      "mean_objects_on": 3.0,
+      "n": 3,
+      "n_valid": 3,
+      "on_run_stabilised_fraction": 0.0
+    },
+    "facade/10": {
+      "mean_camera_motion_px": 10.8859,
+      "mean_error_off": 6.0,
+      "mean_error_on": 1.0,
+      "mean_objects_off": 9.0,
+      "mean_objects_on": 4.0,
+      "n": 3,
+      "n_valid": 3,
+      "on_run_stabilised_fraction": 1.0
+    },
+    "facade/2": {
+      "mean_camera_motion_px": 2.6578,
+      "mean_error_off": 0.0,
+      "mean_error_on": 0.0,
+      "mean_objects_off": 3.0,
+      "mean_objects_on": 3.0,
+      "n": 3,
+      "n_valid": 3,
+      "on_run_stabilised_fraction": 0.0
+    },
+    "facade/3": {
+      "mean_camera_motion_px": 3.6997,
+      "mean_error_off": 0.0,
+      "mean_error_on": 0.0,
+      "mean_objects_off": 3.0,
+      "mean_objects_on": 3.0,
+      "n": 3,
+      "n_valid": 3,
+      "on_run_stabilised_fraction": 0.0
+    },
+    "facade/4": {
+      "mean_camera_motion_px": 5.0012,
+      "mean_error_off": 0.6667,
+      "mean_error_on": 0.6667,
+      "mean_objects_off": 3.6667,
+      "mean_objects_on": 3.6667,
+      "n": 3,
+      "n_valid": 3,
+      "on_run_stabilised_fraction": 0.0
+    },
+    "facade/6": {
+      "mean_camera_motion_px": 6.3818,
+      "mean_error_off": 2.0,
+      "mean_error_on": 1.3333,
+      "mean_objects_off": 5.0,
+      "mean_objects_on": 4.3333,
+      "n": 3,
+      "n_valid": 3,
+      "on_run_stabilised_fraction": 0.6667
+    },
+    "smooth_noise/0": {
+      "mean_camera_motion_px": 0.7361,
+      "mean_error_off": 0.0,
+      "mean_error_on": 0.0,
+      "mean_objects_off": 3.0,
+      "mean_objects_on": 3.0,
+      "n": 3,
+      "n_valid": 3,
+      "on_run_stabilised_fraction": 0.0
+    },
+    "smooth_noise/1": {
+      "mean_camera_motion_px": 1.6948,
+      "mean_error_off": 0.0,
+      "mean_error_on": 0.0,
+      "mean_objects_off": 3.0,
+      "mean_objects_on": 3.0,
+      "n": 3,
+      "n_valid": 3,
+      "on_run_stabilised_fraction": 0.0
+    },
+    "smooth_noise/10": {
+      "mean_camera_motion_px": 10.8652,
+      "mean_error_off": 2.6667,
+      "mean_error_on": 0.6667,
+      "mean_objects_off": 5.6667,
+      "mean_objects_on": 3.0,
+      "n": 3,
+      "n_valid": 3,
+      "on_run_stabilised_fraction": 1.0
+    },
+    "smooth_noise/2": {
+      "mean_camera_motion_px": 2.7043,
+      "mean_error_off": 0.0,
+      "mean_error_on": 0.0,
+      "mean_objects_off": 3.0,
+      "mean_objects_on": 3.0,
+      "n": 3,
+      "n_valid": 3,
+      "on_run_stabilised_fraction": 0.0
+    },
+    "smooth_noise/3": {
+      "mean_camera_motion_px": 3.6685,
+      "mean_error_off": 0.0,
+      "mean_error_on": 0.0,
+      "mean_objects_off": 3.0,
+      "mean_objects_on": 3.0,
+      "n": 3,
+      "n_valid": 3,
+      "on_run_stabilised_fraction": 0.0
+    },
+    "smooth_noise/4": {
+      "mean_camera_motion_px": 5.0689,
+      "mean_error_off": 0.6667,
+      "mean_error_on": 0.6667,
+      "mean_objects_off": 3.6667,
+      "mean_objects_on": 3.6667,
+      "n": 3,
+      "n_valid": 3,
+      "on_run_stabilised_fraction": 0.0
+    },
+    "smooth_noise/6": {
+      "mean_camera_motion_px": 6.272,
+      "mean_error_off": 1.6667,
+      "mean_error_on": 1.0,
+      "mean_objects_off": 4.6667,
+      "mean_objects_on": 3.3333,
+      "n": 3,
+      "n_valid": 3,
+      "on_run_stabilised_fraction": 0.6667
+    }
+  },
+  "current_threshold": 6.0,
+  "current_threshold_error": 0.381,
+  "mean_error_always": 0.381,
+  "mean_error_never": 0.9762,
+  "n_always_counterfactual": 32,
+  "n_valid_scenarios": 42,
+  "note": "Synthetic videos with exact ground truth (3 objects per clip), NOT real footage. Both runs use the unmodified pipeline and policy; camera motion and the plan decision come from the agent's own 'plan' trace rows. Results are what the tracker does; scenarios are not tuned in favour of the agent. Where the agent-on run did not stabilise, abs_error_on is an unstabilised result; the threshold study counts such cases per threshold (n_counterfactual_stabilised). The agent-off run does not model the agent's review/retry step.",
+  "opencv_version": "5.0.0",
+  "runtime_s": 167.18,
+  "scenarios": [
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "smooth_noise",
+      "camera_motion_px": 0.7255,
+      "camera_motion_px_per_segment": [
+        0.7255
+      ],
+      "errors": [],
+      "jitter_px": 0,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_af394a53e64a4cca :: clip 'smooth_noise_j0_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:14Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_0362b2a0c59e46a8 :: clip 'smooth_noise_j0_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:15Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.67,
+      "runtime_s_on": 1.57,
+      "scenario": "smooth_noise_j0_s1",
+      "seed": 1,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "smooth_noise",
+      "camera_motion_px": 0.7982,
+      "camera_motion_px_per_segment": [
+        0.7982
+      ],
+      "errors": [],
+      "jitter_px": 0,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_ec143db7c6804b11 :: clip 'smooth_noise_j0_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:17Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_c9a82f9f6af24d05 :: clip 'smooth_noise_j0_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:19Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.96,
+      "runtime_s_on": 1.94,
+      "scenario": "smooth_noise_j0_s2",
+      "seed": 2,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "smooth_noise",
+      "camera_motion_px": 0.6847,
+      "camera_motion_px_per_segment": [
+        0.6847
+      ],
+      "errors": [],
+      "jitter_px": 0,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_538575f9386f449c :: clip 'smooth_noise_j0_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:21Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_ab70439bd0334392 :: clip 'smooth_noise_j0_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:22Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.37,
+      "runtime_s_on": 1.47,
+      "scenario": "smooth_noise_j0_s3",
+      "seed": 3,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "smooth_noise",
+      "camera_motion_px": 1.807,
+      "camera_motion_px_per_segment": [
+        1.807
+      ],
+      "errors": [],
+      "jitter_px": 1,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_8dfeda26e0314a6b :: clip 'smooth_noise_j1_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:24Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_fcbe7da346d24490 :: clip 'smooth_noise_j1_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:25Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.41,
+      "runtime_s_on": 1.52,
+      "scenario": "smooth_noise_j1_s1",
+      "seed": 1,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "smooth_noise",
+      "camera_motion_px": 1.5836,
+      "camera_motion_px_per_segment": [
+        1.5836
+      ],
+      "errors": [],
+      "jitter_px": 1,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_01907de2290c4a97 :: clip 'smooth_noise_j1_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:27Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_4e01fa5905eb4722 :: clip 'smooth_noise_j1_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:29Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 2.03,
+      "runtime_s_on": 2.37,
+      "scenario": "smooth_noise_j1_s2",
+      "seed": 2,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "smooth_noise",
+      "camera_motion_px": 1.6939,
+      "camera_motion_px_per_segment": [
+        1.6939
+      ],
+      "errors": [],
+      "jitter_px": 1,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_e3110506180247c1 :: clip 'smooth_noise_j1_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:31Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_c5a3e80f4b3a478f :: clip 'smooth_noise_j1_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:33Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.48,
+      "runtime_s_on": 1.59,
+      "scenario": "smooth_noise_j1_s3",
+      "seed": 3,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "smooth_noise",
+      "camera_motion_px": 3.0186,
+      "camera_motion_px_per_segment": [
+        3.0186
+      ],
+      "errors": [],
+      "jitter_px": 2,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_bbae5b3d00ec4f87 :: clip 'smooth_noise_j2_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:34Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_9d331a174cd845c0 :: clip 'smooth_noise_j2_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:36Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.52,
+      "runtime_s_on": 1.62,
+      "scenario": "smooth_noise_j2_s1",
+      "seed": 1,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "smooth_noise",
+      "camera_motion_px": 2.4295,
+      "camera_motion_px_per_segment": [
+        2.4295
+      ],
+      "errors": [],
+      "jitter_px": 2,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_de14851e54db4864 :: clip 'smooth_noise_j2_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:38Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_850e1611bd2a453b :: clip 'smooth_noise_j2_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:39Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.45,
+      "runtime_s_on": 1.62,
+      "scenario": "smooth_noise_j2_s2",
+      "seed": 2,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "smooth_noise",
+      "camera_motion_px": 2.6648,
+      "camera_motion_px_per_segment": [
+        2.6648
+      ],
+      "errors": [],
+      "jitter_px": 2,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_f3b6147d5f994681 :: clip 'smooth_noise_j2_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:41Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_10f50e7810e04930 :: clip 'smooth_noise_j2_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:42Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.53,
+      "runtime_s_on": 1.65,
+      "scenario": "smooth_noise_j2_s3",
+      "seed": 3,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "smooth_noise",
+      "camera_motion_px": 3.6234,
+      "camera_motion_px_per_segment": [
+        3.6234
+      ],
+      "errors": [],
+      "jitter_px": 3,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_a39f7e4cb58c4c2f :: clip 'smooth_noise_j3_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:44Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_0c8e03c500c44e1a :: clip 'smooth_noise_j3_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:46Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.56,
+      "runtime_s_on": 1.67,
+      "scenario": "smooth_noise_j3_s1",
+      "seed": 1,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "smooth_noise",
+      "camera_motion_px": 4.0267,
+      "camera_motion_px_per_segment": [
+        4.0267
+      ],
+      "errors": [],
+      "jitter_px": 3,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_90ec9cb801584049 :: clip 'smooth_noise_j3_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:47Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_54eba6c08109478b :: clip 'smooth_noise_j3_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:49Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.58,
+      "runtime_s_on": 1.57,
+      "scenario": "smooth_noise_j3_s2",
+      "seed": 2,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "smooth_noise",
+      "camera_motion_px": 3.3553,
+      "camera_motion_px_per_segment": [
+        3.3553
+      ],
+      "errors": [],
+      "jitter_px": 3,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_4b7be4400cde4624 :: clip 'smooth_noise_j3_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:51Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_2e170ab41b1b41d0 :: clip 'smooth_noise_j3_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:52Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.9,
+      "runtime_s_on": 2.09,
+      "scenario": "smooth_noise_j3_s3",
+      "seed": 3,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 1,
+      "abs_error_on": 1,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "smooth_noise",
+      "camera_motion_px": 5.0064,
+      "camera_motion_px_per_segment": [
+        5.0064
+      ],
+      "errors": [],
+      "jitter_px": 4,
+      "objects_off": 4,
+      "objects_on": 4,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_5d2c99ca53cb45a1 :: clip 'smooth_noise_j4_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:55Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_fbd37d95d359465f :: clip 'smooth_noise_j4_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:56Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.59,
+      "runtime_s_on": 1.86,
+      "scenario": "smooth_noise_j4_s1",
+      "seed": 1,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 1,
+      "abs_error_on": 1,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "smooth_noise",
+      "camera_motion_px": 4.9099,
+      "camera_motion_px_per_segment": [
+        4.9099
+      ],
+      "errors": [],
+      "jitter_px": 4,
+      "objects_off": 4,
+      "objects_on": 4,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_80a7fd3d50fb4697 :: clip 'smooth_noise_j4_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:25:58Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_644bb807b2da4056 :: clip 'smooth_noise_j4_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:00Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.77,
+      "runtime_s_on": 1.65,
+      "scenario": "smooth_noise_j4_s2",
+      "seed": 2,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "smooth_noise",
+      "camera_motion_px": 5.2905,
+      "camera_motion_px_per_segment": [
+        5.2905
+      ],
+      "errors": [],
+      "jitter_px": 4,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_38e3e717cef04b81 :: clip 'smooth_noise_j4_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:02Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_3c70ff137bfd468e :: clip 'smooth_noise_j4_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:03Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.52,
+      "runtime_s_on": 1.69,
+      "scenario": "smooth_noise_j4_s3",
+      "seed": 3,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 1,
+      "abs_error_on": 1,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "smooth_noise",
+      "camera_motion_px": 5.6459,
+      "camera_motion_px_per_segment": [
+        5.6459
+      ],
+      "errors": [],
+      "jitter_px": 6,
+      "objects_off": 4,
+      "objects_on": 4,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_d531c49f94794a08 :: clip 'smooth_noise_j6_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:05Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_6a1b0262b4484b48 :: clip 'smooth_noise_j6_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:07Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.62,
+      "runtime_s_on": 2.13,
+      "scenario": "smooth_noise_j6_s1",
+      "seed": 1,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 3,
+      "abs_error_on": 1,
+      "agent_steps": {
+        "plan:stabilize": 1,
+        "review:accept": 1
+      },
+      "background": "smooth_noise",
+      "camera_motion_px": 6.2108,
+      "camera_motion_px_per_segment": [
+        6.2108
+      ],
+      "errors": [],
+      "jitter_px": 6,
+      "objects_off": 6,
+      "objects_on": 2,
+      "on_run_stabilised": true,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_7e3fb13c0b864a21 :: clip 'smooth_noise_j6_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:09Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_a431773fb934452f :: clip 'smooth_noise_j6_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:12Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "stabilize",
+      "plan_decisions_per_segment": [
+        "stabilize"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 2.92,
+      "runtime_s_on": 2.68,
+      "scenario": "smooth_noise_j6_s2",
+      "seed": 2,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 1,
+      "abs_error_on": 1,
+      "agent_steps": {
+        "plan:stabilize": 1,
+        "review:accept": 1
+      },
+      "background": "smooth_noise",
+      "camera_motion_px": 6.9594,
+      "camera_motion_px_per_segment": [
+        6.9594
+      ],
+      "errors": [],
+      "jitter_px": 6,
+      "objects_off": 4,
+      "objects_on": 4,
+      "on_run_stabilised": true,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_ab5babf449f24b16 :: clip 'smooth_noise_j6_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:15Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_551c4c33eb594c5e :: clip 'smooth_noise_j6_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:16Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "stabilize",
+      "plan_decisions_per_segment": [
+        "stabilize"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.63,
+      "runtime_s_on": 1.71,
+      "scenario": "smooth_noise_j6_s3",
+      "seed": 3,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 5,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:stabilize": 1,
+        "review:accept": 1
+      },
+      "background": "smooth_noise",
+      "camera_motion_px": 9.7187,
+      "camera_motion_px_per_segment": [
+        9.7187
+      ],
+      "errors": [],
+      "jitter_px": 10,
+      "objects_off": 8,
+      "objects_on": 3,
+      "on_run_stabilised": true,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_e3fd3914e3734720 :: clip 'smooth_noise_j10_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:18Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_b3405dac02154a07 :: clip 'smooth_noise_j10_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:20Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "stabilize",
+      "plan_decisions_per_segment": [
+        "stabilize"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.54,
+      "runtime_s_on": 1.71,
+      "scenario": "smooth_noise_j10_s1",
+      "seed": 1,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 2,
+      "abs_error_on": 1,
+      "agent_steps": {
+        "plan:stabilize": 1,
+        "review:accept": 1
+      },
+      "background": "smooth_noise",
+      "camera_motion_px": 10.3051,
+      "camera_motion_px_per_segment": [
+        10.3051
+      ],
+      "errors": [],
+      "jitter_px": 10,
+      "objects_off": 5,
+      "objects_on": 4,
+      "on_run_stabilised": true,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_e67dd14e16b240fa :: clip 'smooth_noise_j10_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:21Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_e08af1150ee341c4 :: clip 'smooth_noise_j10_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:23Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "stabilize",
+      "plan_decisions_per_segment": [
+        "stabilize"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.75,
+      "runtime_s_on": 1.97,
+      "scenario": "smooth_noise_j10_s2",
+      "seed": 2,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 1,
+      "abs_error_on": 1,
+      "agent_steps": {
+        "plan:stabilize": 1,
+        "review:accept": 1
+      },
+      "background": "smooth_noise",
+      "camera_motion_px": 12.5718,
+      "camera_motion_px_per_segment": [
+        12.5718
+      ],
+      "errors": [],
+      "jitter_px": 10,
+      "objects_off": 4,
+      "objects_on": 2,
+      "on_run_stabilised": true,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_b9e310b09ce64ddc :: clip 'smooth_noise_j10_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:25Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_d4d1420e031f44e0 :: clip 'smooth_noise_j10_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:27Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "stabilize",
+      "plan_decisions_per_segment": [
+        "stabilize"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.94,
+      "runtime_s_on": 3.44,
+      "scenario": "smooth_noise_j10_s3",
+      "seed": 3,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "facade",
+      "camera_motion_px": 0.5593,
+      "camera_motion_px_per_segment": [
+        0.5593
+      ],
+      "errors": [],
+      "jitter_px": 0,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_71f80a45557043ba :: clip 'facade_j0_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:31Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_20010b23b57f4df0 :: clip 'facade_j0_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:33Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 2.01,
+      "runtime_s_on": 1.56,
+      "scenario": "facade_j0_s1",
+      "seed": 1,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "facade",
+      "camera_motion_px": 0.5593,
+      "camera_motion_px_per_segment": [
+        0.5593
+      ],
+      "errors": [],
+      "jitter_px": 0,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_ae7a53f9d36a449f :: clip 'facade_j0_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:34Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_531a2259b83e40a6 :: clip 'facade_j0_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:36Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.51,
+      "runtime_s_on": 1.56,
+      "scenario": "facade_j0_s2",
+      "seed": 2,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "facade",
+      "camera_motion_px": 0.5593,
+      "camera_motion_px_per_segment": [
+        0.5593
+      ],
+      "errors": [],
+      "jitter_px": 0,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_a783bec2b60c402f :: clip 'facade_j0_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:37Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_8e2f4e2f1bf64a57 :: clip 'facade_j0_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:39Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.52,
+      "runtime_s_on": 1.48,
+      "scenario": "facade_j0_s3",
+      "seed": 3,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "facade",
+      "camera_motion_px": 1.6277,
+      "camera_motion_px_per_segment": [
+        1.6277
+      ],
+      "errors": [],
+      "jitter_px": 1,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_a6e65a6504364c5d :: clip 'facade_j1_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:40Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_b28618e041c2407c :: clip 'facade_j1_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:42Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.44,
+      "runtime_s_on": 1.62,
+      "scenario": "facade_j1_s1",
+      "seed": 1,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "facade",
+      "camera_motion_px": 1.423,
+      "camera_motion_px_per_segment": [
+        1.423
+      ],
+      "errors": [],
+      "jitter_px": 1,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_76faf84276e84768 :: clip 'facade_j1_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:44Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_11e9f8ca8e15490f :: clip 'facade_j1_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:45Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.84,
+      "runtime_s_on": 2.06,
+      "scenario": "facade_j1_s2",
+      "seed": 2,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "facade",
+      "camera_motion_px": 1.6974,
+      "camera_motion_px_per_segment": [
+        1.6974
+      ],
+      "errors": [],
+      "jitter_px": 1,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_84dceb0d47c1432e :: clip 'facade_j1_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:48Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_512836447a81448f :: clip 'facade_j1_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:50Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.84,
+      "runtime_s_on": 2.1,
+      "scenario": "facade_j1_s3",
+      "seed": 3,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "facade",
+      "camera_motion_px": 3.0382,
+      "camera_motion_px_per_segment": [
+        3.0382
+      ],
+      "errors": [],
+      "jitter_px": 2,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_5e953bae5f924161 :: clip 'facade_j2_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:52Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_f66d520a58334592 :: clip 'facade_j2_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:53Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.71,
+      "runtime_s_on": 1.54,
+      "scenario": "facade_j2_s1",
+      "seed": 1,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "facade",
+      "camera_motion_px": 2.3281,
+      "camera_motion_px_per_segment": [
+        2.3281
+      ],
+      "errors": [],
+      "jitter_px": 2,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_887eee8e25ad4529 :: clip 'facade_j2_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:55Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_fb8efd4e663d4c4c :: clip 'facade_j2_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:56Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.41,
+      "runtime_s_on": 1.53,
+      "scenario": "facade_j2_s2",
+      "seed": 2,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "facade",
+      "camera_motion_px": 2.607,
+      "camera_motion_px_per_segment": [
+        2.607
+      ],
+      "errors": [],
+      "jitter_px": 2,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_1c80c4860d9b4f5d :: clip 'facade_j2_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:26:58Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_5b5903ee2be04cc1 :: clip 'facade_j2_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:00Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.96,
+      "runtime_s_on": 1.99,
+      "scenario": "facade_j2_s3",
+      "seed": 3,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "facade",
+      "camera_motion_px": 3.6131,
+      "camera_motion_px_per_segment": [
+        3.6131
+      ],
+      "errors": [],
+      "jitter_px": 3,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_da0c05fd416144f6 :: clip 'facade_j3_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:02Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_b339082dfaac432b :: clip 'facade_j3_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:04Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.53,
+      "runtime_s_on": 1.62,
+      "scenario": "facade_j3_s1",
+      "seed": 1,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "facade",
+      "camera_motion_px": 4.0174,
+      "camera_motion_px_per_segment": [
+        4.0174
+      ],
+      "errors": [],
+      "jitter_px": 3,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_a44cf6fe913d4055 :: clip 'facade_j3_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:05Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_abd67da2c63c4fec :: clip 'facade_j3_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:07Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.54,
+      "runtime_s_on": 2.08,
+      "scenario": "facade_j3_s2",
+      "seed": 2,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "facade",
+      "camera_motion_px": 3.4686,
+      "camera_motion_px_per_segment": [
+        3.4686
+      ],
+      "errors": [],
+      "jitter_px": 3,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_50ac249450fb401e :: clip 'facade_j3_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:09Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_68b8ec5abbcf4ea6 :: clip 'facade_j3_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:11Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 1.6,
+      "runtime_s_on": 1.66,
+      "scenario": "facade_j3_s3",
+      "seed": 3,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 1,
+      "abs_error_on": 1,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "facade",
+      "camera_motion_px": 4.9282,
+      "camera_motion_px_per_segment": [
+        4.9282
+      ],
+      "errors": [],
+      "jitter_px": 4,
+      "objects_off": 4,
+      "objects_on": 4,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_7506f41e2acf48a4 :: clip 'facade_j4_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:13Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_0959b5b35af64798 :: clip 'facade_j4_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:15Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 2.43,
+      "runtime_s_on": 2.38,
+      "scenario": "facade_j4_s1",
+      "seed": 1,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "facade",
+      "camera_motion_px": 4.9353,
+      "camera_motion_px_per_segment": [
+        4.9353
+      ],
+      "errors": [],
+      "jitter_px": 4,
+      "objects_off": 3,
+      "objects_on": 3,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_33b523b22ce54445 :: clip 'facade_j4_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:18Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_deab63f6e2c642be :: clip 'facade_j4_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:20Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 2.0,
+      "runtime_s_on": 2.0,
+      "scenario": "facade_j4_s2",
+      "seed": 2,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 1,
+      "abs_error_on": 1,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "facade",
+      "camera_motion_px": 5.14,
+      "camera_motion_px_per_segment": [
+        5.14
+      ],
+      "errors": [],
+      "jitter_px": 4,
+      "objects_off": 4,
+      "objects_on": 4,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_1c14c5049a57449e :: clip 'facade_j4_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:22Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_85e5bb5c2c36417d :: clip 'facade_j4_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:25Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 2.85,
+      "runtime_s_on": 2.55,
+      "scenario": "facade_j4_s3",
+      "seed": 3,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 1,
+      "abs_error_on": 1,
+      "agent_steps": {
+        "plan:default": 1,
+        "review:accept": 1
+      },
+      "background": "facade",
+      "camera_motion_px": 5.9151,
+      "camera_motion_px_per_segment": [
+        5.9151
+      ],
+      "errors": [],
+      "jitter_px": 6,
+      "objects_off": 4,
+      "objects_on": 4,
+      "on_run_stabilised": false,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_2f8fc88a15284858 :: clip 'facade_j6_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:27Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_8a071034efd640f7 :: clip 'facade_j6_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:30Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "default",
+      "plan_decisions_per_segment": [
+        "default"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 3.02,
+      "runtime_s_on": 2.08,
+      "scenario": "facade_j6_s1",
+      "seed": 1,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 2,
+      "abs_error_on": 1,
+      "agent_steps": {
+        "plan:stabilize": 1,
+        "review:accept": 1
+      },
+      "background": "facade",
+      "camera_motion_px": 6.2564,
+      "camera_motion_px_per_segment": [
+        6.2564
+      ],
+      "errors": [],
+      "jitter_px": 6,
+      "objects_off": 5,
+      "objects_on": 4,
+      "on_run_stabilised": true,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_65c761568cee4a91 :: clip 'facade_j6_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:32Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_25f7d40f953f40a9 :: clip 'facade_j6_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:35Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "stabilize",
+      "plan_decisions_per_segment": [
+        "stabilize"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 2.4,
+      "runtime_s_on": 2.95,
+      "scenario": "facade_j6_s2",
+      "seed": 2,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 3,
+      "abs_error_on": 2,
+      "agent_steps": {
+        "plan:stabilize": 1,
+        "review:accept": 1
+      },
+      "background": "facade",
+      "camera_motion_px": 6.9738,
+      "camera_motion_px_per_segment": [
+        6.9738
+      ],
+      "errors": [],
+      "jitter_px": 6,
+      "objects_off": 6,
+      "objects_on": 5,
+      "on_run_stabilised": true,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_7739b0e49f6748d9 :: clip 'facade_j6_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:38Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_a1eb47314fb943e7 :: clip 'facade_j6_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:41Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "stabilize",
+      "plan_decisions_per_segment": [
+        "stabilize"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 2.69,
+      "runtime_s_on": 3.18,
+      "scenario": "facade_j6_s3",
+      "seed": 3,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 1,
+      "abs_error_on": 1,
+      "agent_steps": {
+        "plan:stabilize": 1,
+        "review:accept": 1
+      },
+      "background": "facade",
+      "camera_motion_px": 9.7089,
+      "camera_motion_px_per_segment": [
+        9.7089
+      ],
+      "errors": [],
+      "jitter_px": 10,
+      "objects_off": 4,
+      "objects_on": 4,
+      "on_run_stabilised": true,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_eb9375b2c8c14fd1 :: clip 'facade_j10_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:44Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_8b66a3adb15e480c :: clip 'facade_j10_s1.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:47Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "stabilize",
+      "plan_decisions_per_segment": [
+        "stabilize"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 2.86,
+      "runtime_s_on": 2.3,
+      "scenario": "facade_j10_s1",
+      "seed": 1,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 11,
+      "abs_error_on": 1,
+      "agent_steps": {
+        "plan:stabilize": 1,
+        "review:accept": 1
+      },
+      "background": "facade",
+      "camera_motion_px": 10.1903,
+      "camera_motion_px_per_segment": [
+        10.1903
+      ],
+      "errors": [],
+      "jitter_px": 10,
+      "objects_off": 14,
+      "objects_on": 4,
+      "on_run_stabilised": true,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_0e971e11dca144be :: clip 'facade_j10_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:49Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_a9e24c4bd8b1414f :: clip 'facade_j10_s2.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:52Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "stabilize",
+      "plan_decisions_per_segment": [
+        "stabilize"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 2.52,
+      "runtime_s_on": 3.27,
+      "scenario": "facade_j10_s2",
+      "seed": 2,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 6,
+      "abs_error_on": 1,
+      "agent_steps": {
+        "plan:stabilize": 1,
+        "review:accept": 1
+      },
+      "background": "facade",
+      "camera_motion_px": 12.7584,
+      "camera_motion_px_per_segment": [
+        12.7584
+      ],
+      "errors": [],
+      "jitter_px": 10,
+      "objects_off": 9,
+      "objects_on": 4,
+      "on_run_stabilised": true,
+      "pipeline_warning_count": 2,
+      "pipeline_warnings": [
+        "[off] v2s.agent: video_id=vid_19b83e7ca24e4bd5 :: clip 'facade_j10_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:55Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)",
+        "[on] v2s.agent: video_id=vid_bba6863ad354482f :: clip 'facade_j10_s3.avi' has no recording_start_utc; anchoring at processed_at_utc=2026-10-20T21:27:58Z. events.start_timestamp_utc/end_timestamp_utc for this video are processing-relative, NOT recording wall-clock (videos.recording_start_utc = videos.processed_at_utc marks this)"
+      ],
+      "plan_decision": "stabilize",
+      "plan_decisions_per_segment": [
+        "stabilize"
+      ],
+      "review_flags": 0,
+      "runtime_s_off": 2.46,
+      "runtime_s_on": 2.97,
+      "scenario": "facade_j10_s3",
+      "seed": 3,
+      "truth_objects": 3
+    }
+  ],
+  "selected_mean_policy_error": 0.381,
+  "selected_rule": "argmin mean_policy_error; ties go to the larger threshold",
+  "selected_threshold": 6.0,
+  "settings": {
+    "agent_on_run": "unmodified pipeline and policy (current threshold 6.0)",
+    "backgrounds": [
+      "smooth_noise",
+      "facade"
+    ],
+    "container": "MJPG .avi",
+    "duration_s": 6,
+    "env_V2S_AGENT": null,
+    "fps": 10,
+    "height": 240,
+    "jitter_model": "uniform integer shift in [-j, j] per frame on both axes, cv2.warpAffine BORDER_REPLICATE",
+    "jitter_px": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      6,
+      10
+    ],
+    "object_size_px": 24,
+    "objects": "3 squares 24x24 (2 bright 255, 1 dark 0), all moving horizontally to the right with x = x0 + int(1.5 * frame) px (15 px/s at 10 fps)",
+    "quick": false,
+    "seeds": [
+      1,
+      2,
+      3
+    ],
+    "thresholds": [
+      0.5,
+      0.8,
+      1.5,
+      2.5,
+      4.0,
+      6.0,
+      8.0,
+      12.0
+    ],
+    "tie_rule": "lowest mean error; tie -> largest threshold",
+    "truth_objects": 3,
+    "width": 320
+  },
+  "threshold_study": [
+    {
+      "mean_policy_error": 0.381,
+      "n_counterfactual_stabilised": 32,
+      "stabilised_fraction": 1.0,
+      "threshold": 0.5
+    },
+    {
+      "mean_policy_error": 0.381,
+      "n_counterfactual_stabilised": 26,
+      "stabilised_fraction": 0.8571,
+      "threshold": 0.8
+    },
+    {
+      "mean_policy_error": 0.381,
+      "n_counterfactual_stabilised": 25,
+      "stabilised_fraction": 0.8333,
+      "threshold": 1.5
+    },
+    {
+      "mean_policy_error": 0.381,
+      "n_counterfactual_stabilised": 18,
+      "stabilised_fraction": 0.6667,
+      "threshold": 2.5
+    },
+    {
+      "mean_policy_error": 0.381,
+      "n_counterfactual_stabilised": 10,
+      "stabilised_fraction": 0.4762,
+      "threshold": 4.0
+    },
+    {
+      "mean_policy_error": 0.381,
+      "n_counterfactual_stabilised": 0,
+      "stabilised_fraction": 0.2381,
+      "threshold": 6.0
+    },
+    {
+      "mean_policy_error": 0.4762,
+      "n_counterfactual_stabilised": 0,
+      "stabilised_fraction": 0.1429,
+      "threshold": 8.0
+    },
+    {
+      "mean_policy_error": 0.8571,
+      "n_counterfactual_stabilised": 0,
+      "stabilised_fraction": 0.0476,
+      "threshold": 12.0
+    }
+  ]
+}

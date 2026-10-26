@@ -1,0 +1,192 @@
+[
+  {
+    "question": "How many moving objects are in each video?",
+    "pattern": "objects_per_video",
+    "sql": "SELECT v.filename AS filename, COUNT(o.object_id) AS moving_objects FROM videos v LEFT JOIN objects o ON o.video_id = v.video_id GROUP BY v.video_id ORDER BY v.filename",
+    "rows": [
+      {
+        "filename": "clip1_slovenska.webm",
+        "moving_objects": 159
+      },
+      {
+        "filename": "clip2_shibuya.webm",
+        "moving_objects": 700
+      },
+      {
+        "filename": "clip3_cobbled.webm",
+        "moving_objects": 107
+      }
+    ]
+  },
+  {
+    "question": "Which video has the most activity?",
+    "pattern": "most_activity",
+    "sql": "SELECT v.filename AS filename, COUNT(o.object_id) AS moving_objects FROM videos v LEFT JOIN objects o ON o.video_id = v.video_id GROUP BY v.video_id ORDER BY moving_objects DESC",
+    "rows": [
+      {
+        "filename": "clip2_shibuya.webm",
+        "moving_objects": 700
+      },
+      {
+        "filename": "clip1_slovenska.webm",
+        "moving_objects": 159
+      },
+      {
+        "filename": "clip3_cobbled.webm",
+        "moving_objects": 107
+      }
+    ]
+  },
+  {
+    "question": "When is each video busiest?",
+    "pattern": "busiest_second",
+    "sql": "WITH RECURSIVE s(t) AS (SELECT 0 UNION ALL SELECT t + 1 FROM s WHERE t < 3600), occ AS (SELECT o.video_id AS video_id, s.t AS second, COUNT(*) AS active_tracks FROM s JOIN objects o ON o.first_seen_s <= s.t AND o.last_seen_s >= s.t GROUP BY o.video_id, s.t) SELECT v.filename AS filename, occ.second AS second, occ.active_tracks AS active_tracks FROM occ JOIN videos v ON v.video_id = occ.video_id WHERE occ.active_tracks = (SELECT MAX(o2.active_tracks) FROM occ o2 WHERE o2.video_id = occ.video_id) GROUP BY occ.video_id ORDER BY v.filename",
+    "rows": [
+      {
+        "filename": "clip1_slovenska.webm",
+        "second": 2,
+        "active_tracks": 44
+      },
+      {
+        "filename": "clip2_shibuya.webm",
+        "second": 21,
+        "active_tracks": 101
+      },
+      {
+        "filename": "clip3_cobbled.webm",
+        "second": 7,
+        "active_tracks": 43
+      }
+    ]
+  },
+  {
+    "question": "What are the longest tracks?",
+    "pattern": "longest_tracks",
+    "sql": "SELECT v.filename AS filename, o.track_id AS track_id, ROUND(o.last_seen_s - o.first_seen_s, 2) AS seconds_visible, o.first_seen_s AS first_seen_s, o.last_seen_s AS last_seen_s FROM objects o JOIN videos v ON v.video_id = o.video_id ORDER BY seconds_visible DESC LIMIT 5",
+    "rows": [
+      {
+        "filename": "clip2_shibuya.webm",
+        "track_id": "trk_25",
+        "seconds_visible": 55.92,
+        "first_seen_s": 2.6,
+        "last_seen_s": 58.52
+      },
+      {
+        "filename": "clip2_shibuya.webm",
+        "track_id": "trk_28",
+        "seconds_visible": 55.44,
+        "first_seen_s": 3.08,
+        "last_seen_s": 58.52
+      },
+      {
+        "filename": "clip2_shibuya.webm",
+        "track_id": "trk_27",
+        "seconds_visible": 55.08,
+        "first_seen_s": 2.92,
+        "last_seen_s": 58.0
+      },
+      {
+        "filename": "clip2_shibuya.webm",
+        "track_id": "trk_3",
+        "seconds_visible": 54.52,
+        "first_seen_s": 0.64,
+        "last_seen_s": 55.16
+      },
+      {
+        "filename": "clip2_shibuya.webm",
+        "track_id": "trk_4",
+        "seconds_visible": 54.16,
+        "first_seen_s": 0.64,
+        "last_seen_s": 54.8
+      }
+    ]
+  },
+  {
+    "question": "How confident are the detections?",
+    "pattern": "confidence",
+    "sql": "SELECT v.filename AS filename, ROUND(AVG(o.confidence), 3) AS mean_confidence, ROUND(MIN(o.confidence), 3) AS min_confidence, ROUND(MAX(o.confidence), 3) AS max_confidence FROM objects o JOIN videos v ON v.video_id = o.video_id GROUP BY o.video_id ORDER BY v.filename",
+    "rows": [
+      {
+        "filename": "clip1_slovenska.webm",
+        "mean_confidence": 0.799,
+        "min_confidence": 0.525,
+        "max_confidence": 1.0
+      },
+      {
+        "filename": "clip2_shibuya.webm",
+        "mean_confidence": 0.813,
+        "min_confidence": 0.525,
+        "max_confidence": 1.0
+      },
+      {
+        "filename": "clip3_cobbled.webm",
+        "mean_confidence": 0.743,
+        "min_confidence": 0.523,
+        "max_confidence": 1.0
+      }
+    ]
+  },
+  {
+    "question": "What needs review?",
+    "pattern": "needs_review",
+    "sql": "SELECT r.review_id AS review_id, v.filename AS filename, r.video_id AS video_id, r.segment_id AS segment_id, r.reason AS reason, r.status AS status FROM review_queue r JOIN videos v ON v.video_id = r.video_id ORDER BY r.created_at_utc, r.review_id",
+    "rows": [
+      {
+        "review_id": "rev_26fd85c5736b4232",
+        "filename": "clip2_shibuya.webm",
+        "video_id": "vid_3b1bbe835ebb471a",
+        "segment_id": "seg_f38332ddacaf4947",
+        "reason": "Peak of 51 simultaneous tracks reaches 40; counts are unreliable in dense scenes.",
+        "status": "pending"
+      },
+      {
+        "review_id": "rev_f84530171e2e423e",
+        "filename": "clip2_shibuya.webm",
+        "video_id": "vid_3b1bbe835ebb471a",
+        "segment_id": "seg_4dfa0d7071084478",
+        "reason": "0.71 of 17 tracks are shorter than 0.5 s even after stabilisation; tracks are still fragmenting.",
+        "status": "pending"
+      },
+      {
+        "review_id": "rev_5670942ccefd44ce",
+        "filename": "clip3_cobbled.webm",
+        "video_id": "vid_e6d450ed50d64e0f",
+        "segment_id": "seg_24e7532b75ab4ddd",
+        "reason": "0.71 of 24 tracks are shorter than 0.5 s even after stabilisation; tracks are still fragmenting.",
+        "status": "pending"
+      }
+    ]
+  },
+  {
+    "question": "What did the agent decide?",
+    "pattern": "agent_decisions",
+    "sql": "SELECT step, decision, COUNT(*) AS n FROM agent_trace GROUP BY step, decision ORDER BY step, decision",
+    "rows": [
+      {
+        "step": "plan",
+        "decision": "default",
+        "n": 9
+      },
+      {
+        "step": "retry",
+        "decision": "keep_first",
+        "n": 2
+      },
+      {
+        "step": "review",
+        "decision": "accept",
+        "n": 6
+      },
+      {
+        "step": "review",
+        "decision": "flag_review",
+        "n": 3
+      },
+      {
+        "step": "review",
+        "decision": "retry_stabilized",
+        "n": 2
+      }
+    ]
+  }
+]

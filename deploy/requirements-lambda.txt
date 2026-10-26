@@ -1,0 +1,4 @@
+# Runtime dependencies baked into the Lambda image (boto3 comes with the base image).
+opencv-python-headless==5.0.0.93
+numpy==2.5.4
+flask==3.0.3

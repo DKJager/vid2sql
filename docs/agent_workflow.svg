@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" width="1200" height="760" role="img" aria-labelledby="title desc">
+  <title id="title">Agent workflow: per-segment Video-to-SQL loop with decision points</title>
+  <desc id="desc">For each video segment the agent first observes camera motion with OpenCV 5 phase correlation in pixels per frame. If motion is at least 6.0 px it plans a stabilised run (warpAffine plus MOG2 varThreshold 40), otherwise it plans the default run. It then detects with MOG2 background subtraction and a centroid tracker, and observes the tracks: number of tracks, peak simultaneous tracks and short-track fraction. If peak simultaneous tracks is at least 40, the segment is flagged for human review as a row in review_queue with status pending. Otherwise, if the tracks are fragmenting (short-track fraction at least 0.6 with at least 10 tracks) and the segment was not yet stabilised, the agent retries once with stabilisation and re-observes, keeping the retry only if it has fewer tracks and a lower short-track fraction. If the tracks are fragmenting and the segment was already stabilised, it is flagged for human review. If not fragmenting, the result is accepted and rows are written. Boxes labelled trace row write a row to agent_trace. The OpenCV result changes the next tool call (stabilise or not, retry or not) and raises the human-approval request.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333333"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1200" height="760" fill="#ffffff"/>
+  <g font-family="Helvetica, Arial, sans-serif" fill="#111111">
+    <text x="20" y="30" font-size="20" font-weight="bold">Agent workflow: per-segment loop (OpenCV 5 results drive the next step)</text>
+
+    <!-- Segment input -->
+    <rect x="20" y="60" width="140" height="60" rx="8" fill="#eeeeee" stroke="#555555"/>
+    <text x="90" y="86" font-size="13" text-anchor="middle">Video segment</text>
+    <text x="90" y="104" font-size="11" text-anchor="middle">(input)</text>
+
+    <!-- OBSERVE camera motion -->
+    <rect x="190" y="50" width="220" height="80" rx="8" fill="#dbeafe" stroke="#1d4ed8"/>
+    <text x="300" y="78" font-size="14" font-weight="bold" text-anchor="middle">OBSERVE camera motion</text>
+    <text x="300" y="96" font-size="11" text-anchor="middle">OpenCV 5 phase correlation</text>
+    <text x="300" y="112" font-size="11" text-anchor="middle">(px/frame)</text>
+    <rect x="352" y="40" width="58" height="16" rx="4" fill="#fef3c7" stroke="#b45309"/>
+    <text x="381" y="52" font-size="10" text-anchor="middle">trace row</text>
+
+    <!-- D1 -->
+    <polygon points="540,35 630,90 540,145 450,90" fill="#fff7ed" stroke="#c2410c"/>
+    <text x="540" y="94" font-size="13" text-anchor="middle">motion &gt;= 6.0 px?</text>
+
+    <!-- PLAN stabilise -->
+    <rect x="670" y="60" width="220" height="60" rx="8" fill="#dcfce7" stroke="#15803d"/>
+    <text x="780" y="84" font-size="14" font-weight="bold" text-anchor="middle">PLAN: stabilise</text>
+    <text x="780" y="104" font-size="11" text-anchor="middle">warpAffine + varThreshold 40</text>
+    <rect x="832" y="50" width="58" height="16" rx="4" fill="#fef3c7" stroke="#b45309"/>
+    <text x="861" y="62" font-size="10" text-anchor="middle">trace row</text>
+
+    <!-- PLAN default -->
+    <rect x="670" y="175" width="220" height="60" rx="8" fill="#dcfce7" stroke="#15803d"/>
+    <text x="780" y="200" font-size="14" font-weight="bold" text-anchor="middle">PLAN: default</text>
+    <text x="780" y="219" font-size="11" text-anchor="middle">no stabilisation</text>
+    <rect x="832" y="165" width="58" height="16" rx="4" fill="#fef3c7" stroke="#b45309"/>
+    <text x="861" y="177" font-size="10" text-anchor="middle">trace row</text>
+
+    <!-- DETECT -->
+    <rect x="930" y="170" width="240" height="70" rx="8" fill="#ede9fe" stroke="#6d28d9"/>
+    <text x="1050" y="198" font-size="14" font-weight="bold" text-anchor="middle">DETECT</text>
+    <text x="1050" y="218" font-size="11" text-anchor="middle">MOG2 + centroid tracker</text>
+
+    <!-- OBSERVE tracks -->
+    <rect x="930" y="290" width="240" height="80" rx="8" fill="#dbeafe" stroke="#1d4ed8"/>
+    <text x="1050" y="316" font-size="14" font-weight="bold" text-anchor="middle">OBSERVE tracks</text>
+    <text x="1050" y="335" font-size="11" text-anchor="middle">n_tracks, peak simultaneous,</text>
+    <text x="1050" y="351" font-size="11" text-anchor="middle">short-track fraction</text>
+    <rect x="1112" y="280" width="58" height="16" rx="4" fill="#fef3c7" stroke="#b45309"/>
+    <text x="1141" y="292" font-size="10" text-anchor="middle">trace row</text>
+
+    <!-- D2 -->
+    <polygon points="795,280 885,330 795,380 705,330" fill="#fff7ed" stroke="#c2410c"/>
+    <text x="795" y="334" font-size="13" text-anchor="middle">peak &gt;= 40 tracks?</text>
+
+    <!-- D3 -->
+    <polygon points="510,270 640,330 510,390 380,330" fill="#fff7ed" stroke="#c2410c"/>
+    <text x="510" y="318" font-size="13" font-weight="bold" text-anchor="middle">fragmenting?</text>
+    <text x="510" y="335" font-size="11" text-anchor="middle">short-track fraction &gt;= 0.6</text>
+    <text x="510" y="351" font-size="11" text-anchor="middle">with &gt;= 10 tracks</text>
+
+    <!-- ACCEPT -->
+    <rect x="170" y="300" width="170" height="60" rx="8" fill="#dcfce7" stroke="#15803d"/>
+    <text x="255" y="335" font-size="14" font-weight="bold" text-anchor="middle">ACCEPT</text>
+    <rect x="282" y="290" width="58" height="16" rx="4" fill="#fef3c7" stroke="#b45309"/>
+    <text x="311" y="302" font-size="10" text-anchor="middle">trace row</text>
+
+    <!-- write rows -->
+    <rect x="155" y="420" width="200" height="60" rx="8" fill="#eeeeee" stroke="#555555"/>
+    <text x="255" y="446" font-size="14" font-weight="bold" text-anchor="middle">write rows</text>
+    <text x="255" y="465" font-size="11" text-anchor="middle">(SQL tables, schema.sql)</text>
+
+    <!-- D4 -->
+    <polygon points="510,435 610,480 510,525 410,480" fill="#fff7ed" stroke="#c2410c"/>
+    <text x="510" y="477" font-size="12" text-anchor="middle">already</text>
+    <text x="510" y="493" font-size="12" text-anchor="middle">stabilised?</text>
+
+    <!-- FLAG -->
+    <rect x="680" y="455" width="230" height="75" rx="8" fill="#fee2e2" stroke="#b91c1c"/>
+    <text x="795" y="480" font-size="14" font-weight="bold" text-anchor="middle">FLAG for human review</text>
+    <text x="795" y="499" font-size="11" text-anchor="middle">row in review_queue</text>
+    <text x="795" y="515" font-size="11" text-anchor="middle">status = pending</text>
+    <rect x="852" y="445" width="58" height="16" rx="4" fill="#fef3c7" stroke="#b45309"/>
+    <text x="881" y="457" font-size="10" text-anchor="middle">trace row</text>
+
+    <!-- RETRY -->
+    <rect x="385" y="590" width="250" height="95" rx="8" fill="#ede9fe" stroke="#6d28d9"/>
+    <text x="510" y="614" font-size="14" font-weight="bold" text-anchor="middle">RETRY once with stabilisation</text>
+    <text x="510" y="633" font-size="11" text-anchor="middle">then re-OBSERVE tracks;</text>
+    <text x="510" y="650" font-size="11" text-anchor="middle">keep the retry only if it has fewer tracks</text>
+    <text x="510" y="666" font-size="11" text-anchor="middle">AND a lower short-track fraction</text>
+    <rect x="577" y="580" width="58" height="16" rx="4" fill="#fef3c7" stroke="#b45309"/>
+    <text x="606" y="592" font-size="10" text-anchor="middle">trace row</text>
+
+    <!-- Arrows -->
+    <g fill="none" stroke="#333333" stroke-width="1.6">
+      <path d="M160,90 L188,90" marker-end="url(#arrow)"/>
+      <path d="M410,90 L448,90" marker-end="url(#arrow)"/>
+      <path d="M630,90 L668,90" marker-end="url(#arrow)"/>
+      <path d="M540,145 L540,205 L668,205" marker-end="url(#arrow)"/>
+      <path d="M890,90 L1050,90 L1050,168" marker-end="url(#arrow)"/>
+      <path d="M890,205 L928,205" marker-end="url(#arrow)"/>
+      <path d="M1050,240 L1050,288" marker-end="url(#arrow)"/>
+      <path d="M930,330 L887,330" marker-end="url(#arrow)"/>
+      <path d="M795,380 L795,453" marker-end="url(#arrow)"/>
+      <path d="M705,330 L642,330" marker-end="url(#arrow)"/>
+      <path d="M380,330 L342,330" marker-end="url(#arrow)"/>
+      <path d="M255,360 L255,418" marker-end="url(#arrow)"/>
+      <path d="M510,390 L510,433" marker-end="url(#arrow)"/>
+      <path d="M610,480 L678,480" marker-end="url(#arrow)"/>
+      <path d="M510,525 L510,578" marker-end="url(#arrow)"/>
+      <path d="M635,640 L1110,640 L1110,372" marker-end="url(#arrow)"/>
+    </g>
+
+    <!-- Arrow labels -->
+    <g font-size="12" font-weight="bold">
+      <text x="636" y="82">yes</text>
+      <text x="548" y="178">no</text>
+      <text x="803" y="425">yes</text>
+      <text x="650" y="322">no</text>
+      <text x="350" y="322">no</text>
+      <text x="518" y="420">yes</text>
+      <text x="625" y="472">yes</text>
+      <text x="518" y="555">no</text>
+      <text x="518" y="569" font-size="10" font-weight="normal">(not yet stabilised)</text>
+      <text x="900" y="632" font-weight="normal" font-size="11">re-OBSERVE (once)</text>
+    </g>
+
+    <!-- Side note and legend -->
+    <rect x="20" y="560" width="345" height="140" rx="8" fill="#f8fafc" stroke="#64748b" stroke-dasharray="5,4"/>
+    <text x="35" y="585" font-size="13" font-weight="bold">Why this is an agent loop</text>
+    <text x="35" y="606" font-size="12">The OpenCV result changes the next tool</text>
+    <text x="35" y="623" font-size="12">call (stabilise or not, retry or not) and</text>
+    <text x="35" y="640" font-size="12">raises the human-approval request.</text>
+    <rect x="35" y="660" width="58" height="16" rx="4" fill="#fef3c7" stroke="#b45309"/>
+    <text x="64" y="672" font-size="10" text-anchor="middle">trace row</text>
+    <text x="102" y="672" font-size="11">= box writes a row to agent_trace</text>
+  </g>
+</svg>

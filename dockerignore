@@ -1,0 +1,11 @@
+.venv/
+.git/
+data/clips/
+evidence/
+out/
+.aws-sam/
+__pycache__/
+.pytest_cache/
+*.orig
+AUDIT_LOG.jsonl
+AUDIT_REVIEW_*.md

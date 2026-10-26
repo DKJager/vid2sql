@@ -1,0 +1,22 @@
+# vid2sql — pinned dependencies (Python 3.12)
+
+# Vision: OpenCV 5 does the substantive video analysis (v2s/core_cv.py).
+opencv-python-headless==5.0.0.93
+numpy==2.5.4
+
+# Web endpoint
+flask==3.0.3
+
+# Optional outbound HTTP to a remote vision / reasoning service
+requests==2.32.3
+
+# AWS access (S3 / Athena) — used only when explicitly invoked, never in tests
+boto3==1.35.30
+
+# Local SQL backends:
+#   - sqlite3 (Python stdlib) is used for development and quick local runs.
+#   - duckdb is used in automated tests to validate DDL portability.
+duckdb==1.1.1
+
+# Test runner
+pytest==8.3.3

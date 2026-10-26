@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0.0",
+  "clip": "clip1_retail.mp4",
+  "source_url": "synthetic-fixture",
+  "license": "CC0-1.0",
+  "description": "Synthetic fixture for the stub-transport endpoint tests (tests/test_endpoint.py, tests/test_agent_loop.py). It is NOT ground truth for any real clip and is not read by eval/run_eval.py.",
+  "duration_s": 60.0,
+  "label_semantics": {
+    "objects": "Each object entry represents a DISTINCT physical instance (separate person/vehicle/etc.) identified by a unique track_id. The evaluator matches predicted tracks to ground-truth tracks by class_label and temporal overlap (configurable tolerance, default 1.0 s). No deduplication by spatial overlap is performed — each ground-truth track is an independent instance that must be matched.",
+    "objects.max_count": "Per-track instantaneous maximum count of instances of this class visible for this specific track. Always 1 for individual person/vehicle tracks; may be >1 for group tracks (e.g., crowd). Represents the peak simultaneous occupancy for this single track instance.",
+    "counts": "Per-minute simultaneous occupancy across ALL tracks of the same class. count is the maximum number of distinct instances of that class present at any moment within the minute bucket. For clip1, minute 0 count=2 means two persons were simultaneously present, matching the union of gt_track_1 and gt_track_2 temporal windows.",
+    "events": "Each event represents a high-level semantic interval (presence, movement, interaction) for an individual track instance. Every object track should have a corresponding event entry. Events are matched to predicted events by event_type, class_label, and temporal overlap (configurable tolerance, default 1.0 s).",
+    "motion_score": {
+      "range": "0.0 to 1.0 (inclusive)",
+      "interpretation": "0.0 = static frame, 1.0 = maximum observed motion heuristic. The evaluator uses this as an informational quality estimate and does NOT gate segment matching on motion_score thresholds. Segment matching relies solely on temporal overlap with a default tolerance of 0.5 s.",
+      "threshold_recommendation": "If a consumer uses motion_score for filtering, a default threshold of 0.05 is suggested to discard only truly static segments, but the evaluator makes no filtering decision based on this value."
+    },
+    "track_id_scheme": {
+      "ground_truth_prefix": "gt_",
+      "predicted_prefix": "",
+      "matching_rule": "Evaluator NEVER performs string comparison on track_id fields. Track matching uses class_label and temporal overlap (and spatial overlap when bounding-box annotations are present). The ground-truth track_id is a human-readable label for debugging and documentation only. Predicted track IDs may use any format; no prefix convention is enforced.",
+      "spatial_matching": "When bounding_boxes are provided in ground truth, the evaluator uses Intersection-over-Union (IoU) with a configurable threshold (default 0.3) to associate ground-truth tracks with predicted tracks. When bounding_boxes are NOT provided, the evaluator falls back to class_label + temporal overlap matching without spatial disambiguation, which may reduce precision when multiple instances of the same class overlap in time. Ground-truth annotations should include bounding_boxes wherever feasible to enable fair spatial matching."
+    }
+  },
+  "segments": [
+    {
+      "start_s": 0.0,
+      "end_s": 30.0,
+      "reason": "scene_or_motion",
+      "motion_score": 0.35
+    },
+    {
+      "start_s": 30.0,
+      "end_s": 60.0,
+      "reason": "scene_or_motion",
+      "motion_score": 0.62
+    }
+  ],
+  "objects": [
+    {
+      "track_id": "gt_track_1",
+      "class_label": "person",
+      "first_seen_s": 2.0,
+      "last_seen_s": 58.0,
+      "max_count": 1,
+      "instance_count": 1,
+      "bounding_boxes": [
+        {"time_s": 2.0, "x": 120, "y": 80, "width": 45, "height": 90},
+        {"time_s": 30.0, "x": 310, "y": 75, "width": 48, "height": 95},
+        {"time_s": 58.0, "x": 500, "y": 85, "width": 42, "height": 88}
+      ]
+    },
+    {
+      "track_id": "gt_track_2",
+      "class_label": "person",
+      "first_seen_s": 12.0,
+      "last_seen_s": 45.0,
+      "max_count": 1,
+      "instance_count": 1,
+      "bounding_boxes": [
+        {"time_s": 12.0, "x": 340, "y": 100, "width": 40, "height": 85},
+        {"time_s": 30.0, "x": 150, "y": 90, "width": 44, "height": 92},
+        {"time_s": 45.0, "x": 80, "y": 95, "width": 42, "height": 88}
+      ]
+    }
+  ],
+  "events": [
+    {
+      "event_type": "presence:person",
+      "start_s": 2.0,
+      "end_s": 58.0,
+      "confidence": 0.9,
+      "associated_track_id": "gt_track_1"
+    },
+    {
+      "event_type": "presence:person",
+      "start_s": 12.0,
+      "end_s": 45.0,
+      "confidence": 0.9,
+      "associated_track_id": "gt_track_2"
+    }
+  ],
+  "counts": [
+    {
+      "minute_index": 0,
+      "class_label": "person",
+      "count": 2
+    }
+  ],
+  "notes": "Ground-truth times are offsets in seconds from clip start. Evaluator matches predicted rows by class_label and temporal overlap; track_id fields are for human reference only and are never directly compared with predicted track IDs. Matching uses a configurable tolerance (default 1.0 s). Events represent per-track presence intervals; a system that outputs a merged per-class interval or multiple per-track intervals is acceptable, and the evaluator will align by class-level temporal overlap. Segment boundaries are matched by temporal overlap with a tolerance (default 0.5 s); motion_score is an informational quality estimate and is not used for matching. Counts use per-minute buckets aligned to the clip start; minute_index=0 covers [0.0, 60.0). Bucketing unit is always minutes for all clips, and count is max persons simultaneously present within that minute (per ground-truth annotation)."
+}

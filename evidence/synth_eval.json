@@ -1,0 +1,175 @@
+{
+  "env_V2S_AGENT": null,
+  "note": "Synthetic videos with exact ground truth, NOT real footage; failures are reported, not hidden. No thresholds are asserted.",
+  "opencv_version": "5.0.0",
+  "runtime_s": 9.06,
+  "scenarios": [
+    {
+      "abs_error_off": 1,
+      "abs_error_on": 1,
+      "camera_motion_px": 0.3063,
+      "camera_motion_px_per_segment": [
+        0.3063
+      ],
+      "errors": [],
+      "final_decisions": {
+        "accept": 1
+      },
+      "peak_simultaneous_max": 3,
+      "review_flags": 0,
+      "runtime_s_agent_off": 1.23,
+      "runtime_s_agent_on": 1.12,
+      "scenario": "steady",
+      "table_counts_agent_off": {
+        "agent_trace": 0,
+        "counts": 1,
+        "events": 1,
+        "objects": 4,
+        "review_queue": 0,
+        "segments": 1,
+        "transcript": 0,
+        "videos": 1
+      },
+      "table_counts_agent_on": {
+        "agent_trace": 2,
+        "counts": 1,
+        "events": 1,
+        "objects": 4,
+        "review_queue": 0,
+        "segments": 1,
+        "transcript": 0,
+        "videos": 1
+      },
+      "tracks_agent_off": 4,
+      "tracks_agent_on": 4,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 0,
+      "abs_error_on": 0,
+      "camera_motion_px": 3.3769,
+      "camera_motion_px_per_segment": [
+        3.3769
+      ],
+      "errors": [],
+      "final_decisions": {
+        "accept": 1
+      },
+      "peak_simultaneous_max": 3,
+      "review_flags": 0,
+      "runtime_s_agent_off": 1.08,
+      "runtime_s_agent_on": 1.19,
+      "scenario": "jittery",
+      "table_counts_agent_off": {
+        "agent_trace": 0,
+        "counts": 1,
+        "events": 1,
+        "objects": 3,
+        "review_queue": 0,
+        "segments": 1,
+        "transcript": 0,
+        "videos": 1
+      },
+      "table_counts_agent_on": {
+        "agent_trace": 2,
+        "counts": 1,
+        "events": 1,
+        "objects": 3,
+        "review_queue": 0,
+        "segments": 1,
+        "transcript": 0,
+        "videos": 1
+      },
+      "tracks_agent_off": 3,
+      "tracks_agent_on": 3,
+      "truth_objects": 3
+    },
+    {
+      "abs_error_off": 37,
+      "abs_error_on": 37,
+      "camera_motion_px": 0.1942,
+      "camera_motion_px_per_segment": [
+        0.1942
+      ],
+      "errors": [],
+      "final_decisions": {
+        "accept": 1
+      },
+      "peak_simultaneous_max": 6,
+      "review_flags": 0,
+      "runtime_s_agent_off": 1.07,
+      "runtime_s_agent_on": 1.16,
+      "scenario": "crowd",
+      "table_counts_agent_off": {
+        "agent_trace": 0,
+        "counts": 1,
+        "events": 1,
+        "objects": 8,
+        "review_queue": 0,
+        "segments": 1,
+        "transcript": 0,
+        "videos": 1
+      },
+      "table_counts_agent_on": {
+        "agent_trace": 2,
+        "counts": 1,
+        "events": 1,
+        "objects": 8,
+        "review_queue": 0,
+        "segments": 1,
+        "transcript": 0,
+        "videos": 1
+      },
+      "tracks_agent_off": 8,
+      "tracks_agent_on": 8,
+      "truth_objects": 45
+    },
+    {
+      "abs_error_off": 1,
+      "abs_error_on": 1,
+      "camera_motion_px": 0.2371,
+      "camera_motion_px_per_segment": [
+        0.2371
+      ],
+      "errors": [],
+      "final_decisions": {
+        "accept": 1
+      },
+      "peak_simultaneous_max": 0,
+      "review_flags": 0,
+      "runtime_s_agent_off": 0.97,
+      "runtime_s_agent_on": 1.1,
+      "scenario": "slow_stop",
+      "table_counts_agent_off": {
+        "agent_trace": 0,
+        "counts": 0,
+        "events": 0,
+        "objects": 0,
+        "review_queue": 0,
+        "segments": 1,
+        "transcript": 0,
+        "videos": 1
+      },
+      "table_counts_agent_on": {
+        "agent_trace": 2,
+        "counts": 0,
+        "events": 0,
+        "objects": 0,
+        "review_queue": 0,
+        "segments": 1,
+        "transcript": 0,
+        "videos": 1
+      },
+      "tracks_agent_off": 0,
+      "tracks_agent_on": 0,
+      "truth_objects": 1
+    }
+  ],
+  "seed": 7,
+  "video": {
+    "duration_s": 6,
+    "fps": 10,
+    "height": 240,
+    "width": 320
+  }
+}

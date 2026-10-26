@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>vid2sql — Video to SQL</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { font-family: system-ui, sans-serif; margin: 2rem auto; max-width: 60rem; padding: 0 1rem; }
+  h1 { font-size: 1.4rem; }
+  textarea { width: 100%; box-sizing: border-box; font-family: ui-monospace, monospace; padding: 0.5rem; }
+  button { padding: 0.5rem 1rem; margin-top: 0.5rem; cursor: pointer; }
+  table { border-collapse: collapse; width: 100%; margin-top: 1rem; font-size: 0.85rem; }
+  th, td { border: 1px solid #8884; padding: 0.3rem 0.5rem; text-align: left; }
+  #error { color: #c0392b; margin-top: 0.75rem; white-space: pre-wrap; }
+  .note { color: #777; font-size: 0.8rem; }
+  .examples { margin-bottom: 0.5rem; }
+  .examples button { padding: 0.25rem 0.5rem; margin: 0 0.25rem 0.25rem 0; font-size: 0.8rem; }
+</style>
+</head>
+<body>
+<h1>vid2sql — query video-derived tables</h1>
+<p class="note">
+  Type a read-only SQL query or a plain question. Plain questions are answered
+  by nine reviewed query patterns (no language model); anything else is
+  refused, not guessed. Rows that point into a clip link to the source at the
+  right second. The agent tables agent_trace and review_queue show what the
+  OpenCV 5 results made the agent do.
+</p>
+<div class="examples">
+  <button type="button" class="example">How many moving objects?</button>
+  <button type="button" class="example">Which video has the most activity?</button>
+  <button type="button" class="example">When is each video busiest?</button>
+  <button type="button" class="example">What needs review?</button>
+  <button type="button" class="example">What did the agent decide?</button>
+</div>
+<textarea id="q" rows="4" placeholder="SELECT * FROM events LIMIT 50;"></textarea>
+<br>
+<button id="run">Run</button>
+<div id="error" role="alert"></div>
+<div id="result"></div>
+<script>
+async function runQuery() {
+  const text = document.getElementById("q").value.trim();
+  const errBox = document.getElementById("error");
+  const resultBox = document.getElementById("result");
+  errBox.textContent = "";
+  resultBox.innerHTML = "";
+  const payload = /^(select|with)\b/i.test(text)
+    ? { sql: text }
+    : { question: text };
+  let resp;
+  try {
+    resp = await fetch("/query", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+  } catch (e) {
+    errBox.textContent = "request failed: " + e;
+    return;
+  }
+  if (!resp.ok) {
+    let detail = "";
+    try {
+      detail = await resp.text();
+    } catch (_) {
+      detail = "(could not read body)";
+    }
+    errBox.textContent = `server ${resp.status}: ${detail || resp.statusText}`;
+    return;
+  }
+  let data;
+  try {
+    data = await resp.json();
+  } catch (e) {
+    errBox.textContent = "failed to parse JSON response: " + e;
+    return;
+  }
+  if (!data.ok) {
+    errBox.textContent = data.error || "query rejected";
+    return;
+  }
+  const rows = data.rows || [];
+  if (rows.length === 0) {
+    resultBox.textContent = "0 rows.";
+    return;
+  }
+  const cols = Object.keys(rows[0]);
+  const table = document.createElement("table");
+  const head = document.createElement("tr");
+  for (const c of cols) {
+    const th = document.createElement("th");
+    th.textContent = c;
+    head.appendChild(th);
+  }
+  table.appendChild(head);
+  for (const row of rows) {
+    const tr = document.createElement("tr");
+    for (const c of cols) {
+      const td = document.createElement("td");
+      const v = row[c];
+      if (c === "video_link" && v) {
+        const a = document.createElement("a");
+        a.href = v;
+        a.textContent = "source at t";
+        td.appendChild(a);
+      } else {
+        td.textContent = v === null || v === undefined ? "" : String(v);
+      }
+      tr.appendChild(td);
+    }
+    table.appendChild(tr);
+  }
+  resultBox.appendChild(table);
+}
+document.getElementById("run").addEventListener("click", runQuery);
+for (const btn of document.querySelectorAll(".examples .example")) {
+  btn.addEventListener("click", () => {
+    document.getElementById("q").value = btn.textContent;
+    runQuery();
+  });
+}
+</script>
+</body>
+</html>

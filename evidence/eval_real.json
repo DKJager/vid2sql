@@ -1,0 +1,39 @@
+{
+  "kind": "sanity and determinism checks; no ground-truth precision/recall",
+  "opencv": "5.0.0",
+  "clips": {
+    "clip1_slovenska.webm": {
+      "license": "CC BY 3.0",
+      "checksum_matches": true,
+      "duration_s": 18.72,
+      "tracks": 159,
+      "peak_simultaneous_tracks": 44,
+      "fraction_of_seconds_with_a_track": 0.947,
+      "median_track_seconds": 1.28,
+      "scene_segments": 2
+    },
+    "clip2_shibuya.webm": {
+      "license": "CC BY-SA 4.0",
+      "checksum_matches": true,
+      "duration_s": 58.56,
+      "tracks": 700,
+      "peak_simultaneous_tracks": 101,
+      "fraction_of_seconds_with_a_track": 0.983,
+      "median_track_seconds": 1.56,
+      "scene_segments": 4
+    },
+    "clip3_cobbled.webm": {
+      "license": "CC BY 3.0",
+      "checksum_matches": true,
+      "duration_s": 16.36,
+      "tracks": 107,
+      "peak_simultaneous_tracks": 43,
+      "fraction_of_seconds_with_a_track": 0.882,
+      "median_track_seconds": 1.44,
+      "scene_segments": 3
+    }
+  },
+  "deterministic": true,
+  "invariant_violations": [],
+  "passed": true
+}

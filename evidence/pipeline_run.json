@@ -1,0 +1,44 @@
+{
+  "clip1_slovenska.webm": {
+    "video_id": "vid_391dfcadf61d40db",
+    "counts": {
+      "videos": 1,
+      "segments": 2,
+      "events": 2,
+      "objects": 159,
+      "counts": 1,
+      "transcript": 0,
+      "agent_trace": 4,
+      "review_queue": 0
+    },
+    "wall_s": 106.3
+  },
+  "clip2_shibuya.webm": {
+    "video_id": "vid_3b1bbe835ebb471a",
+    "counts": {
+      "videos": 1,
+      "segments": 4,
+      "events": 4,
+      "objects": 700,
+      "counts": 1,
+      "transcript": 0,
+      "agent_trace": 10,
+      "review_queue": 2
+    },
+    "wall_s": 261.8
+  },
+  "clip3_cobbled.webm": {
+    "video_id": "vid_e6d450ed50d64e0f",
+    "counts": {
+      "videos": 1,
+      "segments": 3,
+      "events": 3,
+      "objects": 107,
+      "counts": 1,
+      "transcript": 0,
+      "agent_trace": 8,
+      "review_queue": 1
+    },
+    "wall_s": 96.9
+  }
+}

@@ -1,0 +1,44 @@
+{
+ "agent_off": {
+  "clip1_slovenska.webm": {
+   "tracks": 159
+  },
+  "clip2_shibuya.webm": {
+   "tracks": 700
+  },
+  "clip3_cobbled.webm": {
+   "tracks": 107
+  }
+ },
+ "agent_on": {
+  "clip1_slovenska.webm": {
+   "tracks": 159,
+   "decisions": {
+    "accept": 2,
+    "default": 2
+   }
+  },
+  "clip2_shibuya.webm": {
+   "tracks": 700,
+   "decisions": {
+    "accept": 2,
+    "default": 4,
+    "flag_review": 2,
+    "keep_first": 1,
+    "retry_stabilized": 1
+   },
+   "review_flags": 2
+  },
+  "clip3_cobbled.webm": {
+   "tracks": 107,
+   "decisions": {
+    "accept": 2,
+    "default": 3,
+    "flag_review": 1,
+    "keep_first": 1,
+    "retry_stabilized": 1
+   },
+   "review_flags": 1
+  }
+ }
+}

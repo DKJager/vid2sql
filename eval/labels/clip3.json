@@ -1,0 +1,101 @@
+{
+  "$schema": "vid2sql-eval-label-schema-v1",
+  "version": "1.0.0",
+  "clip": "data/clip3_workplace.mp4",
+  "clip_sha256": "NOT_FOUND",
+  "source_url": "synthetic-fixture",
+  "license": "CC0-1.0",
+  "description": "Synthetic fixture for the stub-transport endpoint tests (tests/test_endpoint.py, tests/test_agent_loop.py). It is NOT ground truth for any real clip and is not read by eval/run_eval.py.",
+  "duration": {
+    "source": "runtime",
+    "method": "media_header_read",
+    "fallback_value_s": 60.0
+  },
+  "segments": [
+    {
+      "start_s": 0.0,
+      "end_s": 25.0,
+      "reason": "scene_or_motion"
+    },
+    {
+      "start_s": 25.0,
+      "end_s": 60.0,
+      "reason": "scene_or_motion"
+    }
+  ],
+  "objects": [
+    {
+      "track_id": "gt_track_1",
+      "class_label": "person",
+      "first_seen_s": 3.0,
+      "last_seen_s": 55.0,
+      "max_count": 1
+    },
+    {
+      "track_id": "gt_track_2",
+      "class_label": "person",
+      "first_seen_s": 18.0,
+      "last_seen_s": 47.0,
+      "max_count": 1
+    },
+    {
+      "track_id": "gt_track_3",
+      "class_label": "forklift",
+      "first_seen_s": 28.0,
+      "last_seen_s": 42.0,
+      "max_count": 1
+    }
+  ],
+  "events": [
+    {
+      "event_type": "presence:person",
+      "start_s": 3.0,
+      "end_s": 55.0
+    },
+    {
+      "event_type": "presence:person",
+      "start_s": 18.0,
+      "end_s": 47.0
+    },
+    {
+      "event_type": "presence:forklift",
+      "start_s": 28.0,
+      "end_s": 42.0
+    }
+  ],
+  "counts": [
+    {
+      "minute_index": 0,
+      "class_label": "person",
+      "count": 2
+    },
+    {
+      "minute_index": 0,
+      "class_label": "forklift",
+      "count": 1
+    }
+  ],
+  "meta": {
+    "ground_truth_event_types": [
+      "presence:person",
+      "presence:forklift"
+    ],
+    "evaluation_rules": {
+      "object_matching": {
+        "description": "Predicted object tracks are matched to ground-truth object tracks by class_label and temporal IoU of [first_seen_s, last_seen_s] with tolerance set in eval/run_eval.py. max_count is a track-level advisory field indicating the maximum number of instances of that class observed on-screen simultaneously during the track; it is not used in the default matching metric but is available for alternative metrics.",
+        "max_count_usage": "advisory_only_not_used_for_precision_recall"
+      },
+      "event_track_association": {
+        "description": "Each presence:* event row corresponds to exactly one ground-truth object track. For example, the presence:person event with interval 3.0–55.0 is the event emitted by gt_track_1, and the presence:person event with interval 18.0–47.0 is the event emitted by gt_track_2. The evaluator matches predicted events to ground-truth events by event_type and temporal overlap, respecting that multiple events of the same type may exist from different tracks (issue #126).",
+        "rule": "one_event_per_track"
+      },
+      "counts_independence": {
+        "description": "The counts table provides per-minute summary statistics (maximum distinct track count per class_label) and is evaluated independently of the events table. Conflicts between counts and events are avoided because counts measure distinct track presence per minute window regardless of exact start/end times, while events carry exact intervals per track. Precision/recall for counts is computed separately (issue #125).",
+        "rule": "counts_evaluated_independently_of_events"
+      }
+    }
+  },
+  "notes": "Ground-truth times are offsets in seconds from clip start. Count semantics: 'count' is the number of distinct ground-truth tracks of that class_label observed in that minute (max unique track count across the minute window). Track IDs are opaque identifiers used only to associate objects with their ground truth tracks.",
+  "kind": "repo",
+  "source": "vid2sql-mini-eval-3clip-batch"
+}
